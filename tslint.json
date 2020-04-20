@@ -1,0 +1,13 @@
+{
+    "extends": ["tslint:recommended", "tslint-config-prettier"],
+    "rules": {
+        "ter-arrow-parens": false,
+        "semicolon": true,
+        "no-console": false,
+        "no-empty": false,
+        "member-access": false,
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "member-ordering": false
+    }
+}
