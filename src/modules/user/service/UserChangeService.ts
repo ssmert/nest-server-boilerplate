@@ -1,16 +1,13 @@
-import RoleRetireveService from "../../role/service/RoleRetireveService";
-import { User } from "../entity/User";
-import UserRequest from "../api/dto/UserRequest";
-import UserRetireveService from "./UserRetireveService";
-import { UserService } from "./UserService";
-import { UserResponse } from "../api/dto/UserResponse";
-import { Role } from "modules/role/entity/Role";
-import { Equal, DeleteResult, In } from "typeorm";
 import { Injectable } from "@nestjs/common";
-import UserDuplicateException from "../infrastructure/exception/UserDuplicateException";
 import { UserError } from "common/constants/UserErrorEnum";
-import { RoleService } from "modules/role/service/RoleService";
 import * as _ from "lodash";
+import { Role } from "modules/role/entity/Role";
+import { RoleService } from "modules/role/service/RoleService";
+import { Equal, In } from "typeorm";
+import UserRequest from "../api/dto/UserRequest";
+import { User } from "../entity/User";
+import UserDuplicateException from "../infrastructure/exception/UserDuplicateException";
+import { UserService } from "./UserService";
 
 /**
  * 사용자 변경 서비스
@@ -35,7 +32,7 @@ export default class UserChangeService {
 
         // 신규 사용자와 역할을 생성한다.
         const userRoles: Role[] = (_.isUndefined(req.roleIds) || _.isEmpty(req.roleIds)) ? [] : await this.roleService.getList({ roleId: In(req.roleIds) });
-        const user: User = new User(req.userId, req.userNm, req.userPwd, req.userPhone, req.userDiv, req.userMajor, req.userUseYn, userRoles);
+        const user: User = new User(req.userId, req.userNm, req.userPwd, req.userPhone, req.userUseYn, userRoles);
 
         await this.userService.create(user);
     }
@@ -56,7 +53,7 @@ export default class UserChangeService {
 
         // 사용자와 역할을 변경한다.
         const userRoles: Role[] = (_.isUndefined(req.roleIds) || _.isEmpty(req.roleIds)) ? [] : await this.roleService.getList({ roleId: In(req.roleIds) });
-        user.modifyUser(req.userId, req.userNm, req.userPwd, req.userPhone, req.userDiv, req.userMajor, req.userUseYn, userRoles);
+        user.modifyUser(req.userId, req.userNm, req.userPwd, req.userPhone, req.userUseYn, userRoles);
 
         await this.userService.save(user);
     }

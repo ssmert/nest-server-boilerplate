@@ -13,12 +13,6 @@ export default class UserRequest {
     // 연락처
     @ApiProperty()
     userPhone: string;
-    // 사용자구분
-    @ApiProperty()
-    userDiv: string;
-    // 사용자분과
-    @ApiProperty()
-    userMajor: string;
     // 사용여부
     @ApiProperty()
     userUseYn: string;
@@ -33,18 +27,14 @@ export default class UserRequest {
      * @param userNm 사용자명 
      * @param userPwd 비밀번호 
      * @param userPhone 연락처 
-     * @param userDiv 사용자구분 
-     * @param userMajor 사용자분과 
      * @param userUseYn 사용여부 
      * @param roleIds 역할식별자목록 
      */
-    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userDiv: string, userMajor: string, userUseYn: string, roleIds: string[]) {
+    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roleIds: string[]) {
         this.userId = userId;
         this.userNm = userNm;
         this.userPwd = userPwd;
         this.userPhone = userPhone;
-        this.userDiv = userDiv;
-        this.userMajor = userMajor;
         this.userUseYn = userUseYn;
         this.roleIds = roleIds;
     }

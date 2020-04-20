@@ -1,13 +1,7 @@
-import {
-    CallHandler,
-    ExecutionContext,
-    Injectable,
-    NestInterceptor,
-} from '@nestjs/common';
-import { Observable } from 'rxjs';
-
-import { User } from 'modules/user/entity/User';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { AuthService } from 'modules/auth/AuthService';
+import { User } from 'modules/user/entity/User';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthUserInterceptor implements NestInterceptor {

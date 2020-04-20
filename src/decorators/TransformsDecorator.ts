@@ -1,7 +1,5 @@
-/* tslint:disable:naming-convention */
-
 import { Transform } from 'class-transformer';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 /**
  * 빈공백을 제거한다.

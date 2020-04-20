@@ -27,14 +27,6 @@ export class User extends AbstractEntity<UserResponse> {
     @Column({ name: "user_phone", length: 20 })
     userPhone: string;
 
-    // 사용자구분
-    @Column({ name: "user_div", length: 36 })
-    userDiv: string;
-
-    // 사용자분과
-    @Column({ name: "user_major", length: 36, nullable: true })
-    userMajor: string;
-
     // 사용여부
     @Column("char", { name: "user_use_yn", length: 1 })
     userUseYn: string;
@@ -56,24 +48,18 @@ export class User extends AbstractEntity<UserResponse> {
      * @param userNm 사용자명 
      * @param userPwd 비밀번호 
      * @param userPhone 연락처 
-     * @param userDiv 사용자구분 
-     * @param userMajor 사용자분과 
      * @param userUseYn 사용여부 
      * @param roles 역할목록 
      */
-    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userDiv: string, userMajor: string, userUseYn: string, roles: Role[]) {
-        super()
+    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roles: Role[]) {
+        super();
         this.userId = userId;
         this.userNm = userNm;
         this.userPwd = userPwd;
         this.userPhone = userPhone;
-        this.userDiv = userDiv;
-        this.userMajor = userMajor;
         this.userUseYn = userUseYn;
         this.roles = roles;
     }
-
-
 
     /**
      * 사용자를 변경한다.
@@ -82,18 +68,14 @@ export class User extends AbstractEntity<UserResponse> {
      * @param userNm 사용자명 
      * @param userPwd 비밀번호 
      * @param userPhone 연락처 
-     * @param userDiv 사용자구분 
-     * @param userMajor 사용자분과 
      * @param userUseYn 사용여부 
      * @param roles 역할목록 
      */
-    modifyUser = (userId: string, userNm: string, userPwd: string, userPhone: string, userDiv: string, userMajor: string, userUseYn: string, roles: Role[]): void => {
+    modifyUser = (userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roles: Role[]): void => {
         this.userId = userId;
         this.userNm = userNm;
         this.userPwd = userPwd;
         this.userPhone = userPhone;
-        this.userDiv = userDiv;
-        this.userMajor = userMajor;
         this.userUseYn = userUseYn;
         this.roles = roles;
     }

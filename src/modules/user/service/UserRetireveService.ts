@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
+import { UserError } from "common/constants/UserErrorEnum";
 import * as _ from "lodash";
-import { Equal, In, Like } from "typeorm";
+import { Equal, Like } from "typeorm";
 import { UserResponse } from "../api/dto/UserResponse";
 import { User } from "../entity/User";
-import { UserService } from "./UserService";
 import UserNotFoundException from "../infrastructure/exception/UserNotFoundException";
-import { UserError } from "common/constants/UserErrorEnum";
+import { UserService } from "./UserService";
 
 /**
  * 사용자 조회 서비스
@@ -44,23 +44,5 @@ export default class UserRetireveService {
         }
 
         return user.toDto();
-    }
-
-    /**
-     * 사용자 구분에 해당하는 사용자가 존재하는지 확인한다.
-     * 
-     * @param userDivs 사용자구분목록
-     */
-    public async checkExistByUserDiv(userDivs: string[]): Promise<number> {
-        return this.userService.getCount({ userDiv: In(userDivs) });
-    }
-
-    /**
-     * 사용자 분과에 해당하는 사용자가 존재하는지 확인한다.
-     * 
-     * @param userMajors 사용자분과목록
-     */
-    public async checkExistByUserMajor(userMajors: string[]): Promise<number> {
-        return this.userService.getCount({ userMajor: In(userMajors) });
     }
 }

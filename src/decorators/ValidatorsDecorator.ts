@@ -1,10 +1,4 @@
-/* tslint:disable:naming-convention */
-
-import {
-    registerDecorator,
-    ValidationArguments,
-    ValidationOptions,
-} from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 
 /**
  * 유효한 비밀번호인지 체크한다.
@@ -21,7 +15,7 @@ export function IsPassword(
             constraints: [],
             options: validationOptions,
             validator: {
-                validate(value: string, _args: ValidationArguments) {
+                validate(value: string, args: ValidationArguments) {
                     return /^[a-zA-Z0-9!@#$%^&*]*$/.test(value);
                 },
             },

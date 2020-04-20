@@ -1,11 +1,9 @@
 import { Global, HttpModule, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-
 import { ConfigService } from './services/ConfigService';
-import { GeneratorService } from './services/GeneratorService';
 import { ValidatorService } from './services/ValidatorService';
 
-const providers = [ConfigService, ValidatorService, GeneratorService];
+const providers = [ConfigService, ValidatorService];
 
 @Global()
 @Module({

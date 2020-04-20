@@ -1,8 +1,9 @@
-import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
-import express, { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
+import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
 import * as compression from 'compression';
+import { GlobalValidationPipe } from 'decorators/GlobalValidationPipe';
 import * as RateLimit from 'express-rate-limit';
 import { GlobalExceptionFilter } from 'filters/GlobalExceptionFilter';
 import * as helmet from 'helmet';
@@ -12,7 +13,6 @@ import { AppModule } from './AppModule';
 import { ConfigService } from './shared/services/ConfigService';
 import { SharedModule } from './shared/SharedModule';
 import { setupSwagger } from './Swagger';
-import { GlobalValidationPipe } from 'decorators/GlobalValidationPipe';
 
 async function bootstrap() {
     initializeTransactionalContext();
@@ -43,18 +43,6 @@ async function bootstrap() {
     app.useGlobalFilters(new GlobalExceptionFilter(reflector));
     // 인터셉터 설정
     app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
-
-    // TODO 추후 제거!!!
-    // app.useGlobalPipes(
-    //     new ValidationPipe({
-    //         whitelist: true,
-    //         transform: true,
-    //         dismissDefaultMessages: true,
-    //         validationError: {
-    //             target: false,
-    //         },
-    //     }),
-    // );
 
     const configService = app.select(SharedModule).get(ConfigService);
 

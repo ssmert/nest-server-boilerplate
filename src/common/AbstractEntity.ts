@@ -1,5 +1,4 @@
 import { Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
 import { UtilsService } from '../providers/utilsService';
 import { AbstractDto } from './dto/AbstractDto';
 

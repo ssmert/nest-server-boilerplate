@@ -31,8 +31,8 @@ export class ConfigService {
     get typeOrmConfig(): TypeOrmModuleOptions {
         let entities = [__dirname + '/../../modules/*/entity/*{.ts,.js}'];
 
-        if ((<any>module).hot) {
-            const entityContext = (<any>require).context(
+        if ((module as any).hot) {
+            const entityContext = (require as any).context(
                 './../../modules',
                 true,
                 /\\.ts$/,
