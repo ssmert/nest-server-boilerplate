@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthError } from 'common/constants/AuthErrorEnum';
 import * as _ from 'lodash';
 import { User } from 'modules/user/entity/User';
-import { ContextService } from '../../providers/contextService';
-import { UtilsService } from '../../providers/utilsService';
+import { ContextProvider } from '../../providers/ContextProvider';
+import { UtilsService } from '../../providers/UtilsService';
 import { ConfigService } from '../../shared/services/ConfigService';
 import { UserService } from '../user/service/UserService';
 import { AuthRequest } from './dto/AuthRequest';
@@ -15,28 +15,22 @@ import AuthException from './infrastructure/exception/AuthException';
 
 @Injectable()
 export class AuthService {
-    private static authUserKey = process.env.JWT_SECRET_KEY;
-
     constructor(
         public readonly jwtService: JwtService,
         public readonly configService: ConfigService,
         public readonly userService: UserService,
-
     ) { }
 
     static setAuthUser(user: User) {
-        ContextService.set(AuthService.authUserKey, user);
-    }
-
-    static getAuthUser(): User {
-        return ContextService.get(AuthService.authUserKey);
+        ContextProvider.set('auth', user);
     }
 
     //////////////////////////////////////////////////////////////////////
 
     /**
+     * 인증을 처리한다.
      * 
-     * @param req 
+     * @param req 요청
      */
     async auth(req: AuthRequest): Promise<AuthResponse> {
         const authUser = await this.userService.get({ userId: req.userId });
@@ -56,6 +50,7 @@ export class AuthService {
             expiresIn: this.configService.getNumber("JWT_EXPIRATION_TIME"),
             accessToken: await this.jwtService.signAsync({
                 userId: authUser.userId,
+                userNm: authUser.userNm,
                 expiresIn: this.configService.getNumber("JWT_EXPIRATION_TIME")
             },
                 { expiresIn: '1d' }),

@@ -1,6 +1,8 @@
-import { Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { UtilsService } from '../providers/utilsService';
+import { Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { UtilsService } from '../providers/UtilsService';
 import { AbstractDto } from './dto/AbstractDto';
+import { ContextProvider } from 'providers/ContextProvider';
+import { User } from 'modules/user/entity/User';
 
 export abstract class AbstractEntity<T extends AbstractDto = AbstractDto> {
     // 등록자
@@ -31,5 +33,21 @@ export abstract class AbstractEntity<T extends AbstractDto = AbstractDto> {
 
     toDto(options?: any) {
         return UtilsService.toDto(this.dtoClass, this, options);
+    }
+
+    @BeforeInsert()
+    beforeInsert = () => {
+        const user = ContextProvider.get('auth') as User;
+        this.regId = user.userId;
+        this.regNm = user.userNm;
+        this.chgId = user.userId;
+        this.chgNm = user.userNm;
+    }
+
+    @BeforeUpdate()
+    beforeUpdate = () => {
+        const user = ContextProvider.get('auth') as User;
+        this.chgId = user.userId;
+        this.chgNm = user.userNm;
     }
 }

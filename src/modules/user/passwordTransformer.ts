@@ -1,6 +1,6 @@
 import { ValueTransformer } from 'typeorm';
 
-import { UtilsService } from '../../providers/utilsService';
+import { UtilsService } from '../../providers/UtilsService';
 
 export class PasswordTransformer implements ValueTransformer {
     to(value) {

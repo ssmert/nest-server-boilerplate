@@ -1,18 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import './appPolyfill';
-// 미들웨어
-import { contextMiddleware } from './middlewares';
-
-// 모듈
-import { SharedModule } from './shared/SharedModule';
 import { CdGrpModule } from 'modules/code/CdGrpModule';
 import { RoleModule } from 'modules/role/RoleModule';
+import { ConfigService } from 'shared/services/ConfigService';
+import { SharedModule } from 'shared/SharedModule';
+import './appPolyfill';
+import { contextMiddleware } from './middlewares';
 import { AuthModule } from './modules/auth/AuthModule';
 import { UserModule } from './modules/user/UserModule';
-
-// 설정
-import { ConfigService } from './shared/services/ConfigService';
 
 @Module({
     imports: [
