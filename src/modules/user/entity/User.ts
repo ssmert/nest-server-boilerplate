@@ -2,7 +2,7 @@ import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "t
 // import { Role } from "../../role/entity/Role";
 import { AbstractEntity } from "common/AbstractEntity";
 import { UserResponse } from "../api/dto/UserResponse";
-import { PasswordTransformer } from "modules/user/passwordTransformer";
+import { PasswordTransformer } from "modules/user/PasswordTransformer";
 import { Role } from "modules/role/entity/Role";
 
 @Entity({ name: "tb_user" })
