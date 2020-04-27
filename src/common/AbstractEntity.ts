@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
-import { UtilsService } from '../providers/UtilsService';
+import { UtilsProvider } from '../providers/UtilsService';
 import { AbstractDto } from './dto/AbstractDto';
 import { ContextProvider } from 'providers/ContextProvider';
 import { User } from 'modules/user/entity/User';
@@ -32,7 +32,7 @@ export abstract class AbstractEntity<T extends AbstractDto = AbstractDto> {
     abstract dtoClass: new (entity: AbstractEntity, options?: any) => T;
 
     toDto(options?: any) {
-        return UtilsService.toDto(this.dtoClass, this, options);
+        return UtilsProvider.toDto(this.dtoClass, this, options);
     }
 
     @BeforeInsert()

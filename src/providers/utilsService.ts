@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import * as _ from 'lodash';
 
-export class UtilsService {
+export class UtilsProvider {
     /**
      * convert entity to dto class instance
      * @param {{new(entity: E, options: any): T}} model

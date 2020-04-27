@@ -4,7 +4,7 @@ import { AuthError } from 'common/constants/AuthErrorEnum';
 import * as _ from 'lodash';
 import { User } from 'modules/user/entity/User';
 import { ContextProvider } from '../../providers/ContextProvider';
-import { UtilsService } from '../../providers/UtilsService';
+import { UtilsProvider } from '../../providers/UtilsService';
 import { ConfigService } from '../../shared/services/ConfigService';
 import { UserService } from '../user/service/UserService';
 import { AuthRequest } from './dto/AuthRequest';
@@ -41,7 +41,7 @@ export class AuthService {
         }
 
         // 비밀번호가 일치하지 않으면..
-        const isMatchPwd = await UtilsService.validateHash(req.userPwd, authUser && authUser.userPwd);
+        const isMatchPwd = await UtilsProvider.validateHash(req.userPwd, authUser && authUser.userPwd);
         if (!isMatchPwd) {
             throw new AuthException(AuthError.AUTH002);
         }

@@ -1,10 +1,10 @@
 import { ValueTransformer } from 'typeorm';
 
-import { UtilsService } from '../../providers/UtilsService';
+import { UtilsProvider } from '../../providers/UtilsService';
 
 export class PasswordTransformer implements ValueTransformer {
     to(value) {
-        return UtilsService.generateHash(value);
+        return UtilsProvider.generateHash(value);
     }
     from(value) {
         return value;
