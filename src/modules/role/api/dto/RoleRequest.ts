@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export default class RoleRequest {
+/**
+ * 역할 요청데이터
+ */
+export class RoleRequest {
     // 역할 아이디
     @ApiProperty()
     roleId: string;

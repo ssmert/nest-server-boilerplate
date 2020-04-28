@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { AuthError } from 'common/constants/AuthErrorEnum';
-import * as _ from 'lodash';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Equal } from 'typeorm';
-import { UserService } from '../user/service/UserService';
-import AuthException from './infrastructure/exception/AuthException';
-import { ConfigService } from 'shared/services/ConfigService';
+import { Injectable } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { AuthError } from "common/constants/AuthErrorEnum";
+import * as _ from "lodash";
+import { ExtractJwt, Strategy } from "passport-jwt";
+import { Equal } from "typeorm";
+import { UserService } from "../user/service/UserService";
+import { ConfigService } from "shared/services/ConfigService";
+import { AuthException } from "./infrastructure/exception/AuthException";
 
+/**
+ * JWT 인증 전략
+ */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(
@@ -17,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: configService.get('JWT_SECRET_KEY'),
+            secretOrKey: configService.get("JWT_SECRET_KEY"),
         });
     }
 

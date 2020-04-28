@@ -1,5 +1,5 @@
-import { Transform } from 'class-transformer';
-import * as _ from 'lodash';
+import { Transform } from "class-transformer";
+import * as _ from "lodash";
 
 /**
  * 빈공백을 제거한다.
@@ -7,9 +7,9 @@ import * as _ from 'lodash';
 export function Trim() {
     return Transform((value: string | string[]) => {
         if (_.isArray(value)) {
-            return value.map(v => _.trim(v).replace(/\s\s+/g, ' '));
+            return value.map(v => _.trim(v).replace(/\s\s+/g, " "));
         }
-        return _.trim(value).replace(/\s\s+/g, ' ');
+        return _.trim(value).replace(/\s\s+/g, " ");
     });
 }
 

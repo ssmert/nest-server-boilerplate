@@ -1,7 +1,9 @@
-import { CdDtl } from "modules/code/entity/CdDtl";
 import { ApiProperty } from "@nestjs/swagger";
 
-export default class CdGrpRequest {
+/**
+ * 코드그룹 요청데이터
+ */
+export class CdGrpRequest {
     // 코드 아이디
     @ApiProperty()
     cdGrpId: string;

@@ -1,8 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { UserResponse } from "../../user/api/dto/UserResponse";
+import { AuthTokenResponse } from "./AuthTokenResponse";
 
-import { UserResponse } from '../../user/api/dto/UserResponse';
-import { AuthTokenResponse } from './AuthTokenResponse';
-
+/**
+ * 인증 응답데이터
+ */
 export class AuthResponse {
     user: UserResponse;
     token: AuthTokenResponse;

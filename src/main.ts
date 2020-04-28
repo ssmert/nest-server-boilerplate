@@ -1,18 +1,18 @@
-import { ClassSerializerInterceptor } from '@nestjs/common';
-import { NestFactory, Reflector } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
-import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
-import * as compression from 'compression';
-import { GlobalValidationPipe } from 'decorators/GlobalValidationPipe';
-import * as RateLimit from 'express-rate-limit';
-import { GlobalExceptionFilter } from 'filters/GlobalExceptionFilter';
-import * as helmet from 'helmet';
-import * as morgan from 'morgan';
-import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from 'typeorm-transactional-cls-hooked';
-import { AppModule } from './AppModule';
-import { ConfigService } from './shared/services/ConfigService';
-import { SharedModule } from './shared/SharedModule';
-import { setupSwagger } from './Swagger';
+import { ClassSerializerInterceptor } from "@nestjs/common";
+import { NestFactory, Reflector } from "@nestjs/core";
+import { Transport } from "@nestjs/microservices";
+import { ExpressAdapter, NestExpressApplication } from "@nestjs/platform-express";
+import * as compression from "compression";
+import { GlobalValidationPipe } from "decorators/GlobalValidationPipe";
+import * as RateLimit from "express-rate-limit";
+import { GlobalExceptionFilter } from "filters/GlobalExceptionFilter";
+import * as helmet from "helmet";
+import * as morgan from "morgan";
+import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from "typeorm-transactional-cls-hooked";
+import { AppModule } from "./AppModule";
+import { ConfigService } from "./shared/services/ConfigService";
+import { SharedModule } from "./shared/SharedModule";
+import { setupSwagger } from "./Swagger";
 
 async function bootstrap() {
     initializeTransactionalContext();
@@ -22,7 +22,7 @@ async function bootstrap() {
         new ExpressAdapter(),
         { cors: true },
     );
-    app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+    app.enable("trust proxy"); // only if you"re behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
     app.use(helmet());
     app.use(
         new RateLimit({
@@ -33,7 +33,7 @@ async function bootstrap() {
     app.use(compression());
 
     // 로그 설정
-    app.use(morgan('combined'));
+    app.use(morgan("combined"));
     app.useGlobalPipes(new GlobalValidationPipe());
 
     // 리플렉터
@@ -49,7 +49,7 @@ async function bootstrap() {
     app.connectMicroservice({
         transport: Transport.TCP,
         options: {
-            port: configService.getNumber('TRANSPORT_PORT'),
+            port: configService.getNumber("TRANSPORT_PORT"),
             retryAttempts: 5,
             retryDelay: 3000,
         },
@@ -57,11 +57,11 @@ async function bootstrap() {
 
     await app.startAllMicroservicesAsync();
 
-    if (['development', 'staging'].includes(configService.nodeEnv)) {
+    if (["development", "staging"].includes(configService.nodeEnv)) {
         setupSwagger(app);
     }
 
-    const port = configService.getNumber('PORT');
+    const port = configService.getNumber("PORT");
     await app.listen(port);
 
     console.info(`server running on port ${port}`);

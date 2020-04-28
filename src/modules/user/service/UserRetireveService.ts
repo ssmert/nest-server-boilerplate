@@ -4,14 +4,14 @@ import * as _ from "lodash";
 import { Equal, Like } from "typeorm";
 import { UserResponse } from "../api/dto/UserResponse";
 import { User } from "../entity/User";
-import UserNotFoundException from "../infrastructure/exception/UserNotFoundException";
+import { UserNotFoundException } from "../infrastructure/exception/UserNotFoundException";
 import { UserService } from "./UserService";
 
 /**
  * 사용자 조회 서비스
  */
 @Injectable()
-export default class UserRetireveService {
+export class UserRetireveService {
     constructor(private readonly userService: UserService) { }
     /**
      * 전체 사용자 목록을 조회한다.

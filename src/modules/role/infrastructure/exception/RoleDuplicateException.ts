@@ -4,7 +4,7 @@ import { IError } from "interfaces/IError";
 /**
  * 역할 데이터 중복(`CONFLICT: 409`) 에러이다.
  */
-export default class RoleDuplicateException extends ConflictException {
+export class RoleDuplicateException extends ConflictException {
     constructor(errData?: IError | string, ...msgArgs: string[]) {
         if (errData) {
             if (typeof errData === "string") {

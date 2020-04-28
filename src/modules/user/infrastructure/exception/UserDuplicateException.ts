@@ -4,7 +4,7 @@ import { IError } from "interfaces/IError";
 /**
  * 사용자 데이터 중복(`CONFLICT: 409`) 에러이다.
  */
-export default class UserDuplicateException extends ConflictException {
+export class UserDuplicateException extends ConflictException {
     constructor(errData?: IError | string, ...msgArgs: string[]) {
         if (errData) {
             if (typeof errData === "string") {

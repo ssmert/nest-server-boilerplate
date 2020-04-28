@@ -1,6 +1,6 @@
-import RoleResponse from 'modules/role/api/dto/RoleResponse';
-import { User } from 'modules/user/entity/User';
-import { AbstractDto } from '../../../../common/dto/AbstractDto';
+import { RoleResponse } from "modules/role/api/dto/RoleResponse";
+import { User } from "modules/user/entity/User";
+import { AbstractDto } from "../../../../common/dto/AbstractDto";
 
 /**
  * 사용자 응답 데이터

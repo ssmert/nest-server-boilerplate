@@ -1,11 +1,15 @@
 import { AbstractEntity } from "common/AbstractEntity";
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { CdGrp } from "./CdGrp";
-import CdDtlResponse from "../api/dto/CdDtlResponse";
-import CdDtlRequest from "../api/dto/CdDtlRequest";
+import { CdDtlResponse } from "../api/dto/CdDtlResponse";
+import { CdDtlRequest } from "../api/dto/CdDtlRequest";
 
-@Entity({ name: "tb_code_detail" })
+/**
+ * 코드상세 엔티티
+ */
+@Entity({ name: "tb_cd_dtl" })
 export class CdDtl extends AbstractEntity<CdDtlResponse> {
+    dtoClass = CdDtlResponse;
     // 코드상세 일련번호
     @PrimaryGeneratedColumn({ name: "cd_dtl_seq", type: "bigint" })
     cdDtlSeq: number;
@@ -26,12 +30,8 @@ export class CdDtl extends AbstractEntity<CdDtlResponse> {
     @ManyToOne(() => CdGrp, cdGrp => cdGrp.cdDtls, {
         onDelete: "RESTRICT"
     })
-    @JoinColumn({ name: "cd_grp_seq" })
+    @JoinColumn({ name: "cd_grp_seq", referencedColumnName: "cdGrpSeq" })
     cdGrp: CdGrp;
-
-    ////////////////////////////////////////////////////////////////
-
-    dtoClass = CdDtlResponse;
 
     /**
      * 생성자
@@ -48,7 +48,7 @@ export class CdDtl extends AbstractEntity<CdDtlResponse> {
     }
 
     /**
-     * 코드를 변경한다.
+     * 코드상세를 변경한다.
      * 
      * @param cdDtlId 코드상세 식별자
      * @param cdDtlNm 코드상세명 

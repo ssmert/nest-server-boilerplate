@@ -2,9 +2,9 @@ import { NotFoundException } from "@nestjs/common";
 import { IError } from "interfaces/IError";
 import * as _ from "lodash";
 /**
- * 코드 데이터 없음(`NOT_FOUND: 404`) 에러이다.
+ * 코드그룹 데이터 없음(`NOT_FOUND: 404`) 에러이다.
  */
-export default class CdGrpNotFoundException extends NotFoundException {
+export class CdGrpNotFoundException extends NotFoundException {
     constructor(errData?: IError | string, ...msgArgs: string[]) {
         if (errData) {
             if (typeof errData === "string") {

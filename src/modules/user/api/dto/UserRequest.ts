@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export default class UserRequest {
+/**
+ * 사용자 요청데이터
+ */
+export class UserRequest {
     // 사용자 아이디
     @ApiProperty()
     userId: string;

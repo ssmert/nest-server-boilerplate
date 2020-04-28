@@ -1,23 +1,22 @@
 import { Injectable } from "@nestjs/common";
-import { Equal, In } from "typeorm";
-import CdDtlRequest from "../api/dto/CdDtlRequest";
-import { CdDtl } from "../entity/CdDtl";
-import CdDtlDuplicateException from "../infrastructure/exception/CdDtlDuplicateException";
-import { CodeGroupError } from "common/constants/CodeGroupErrorEnum";
-import { CdGrpService } from "./CdGrpService";
-import { CdGrp } from "../entity/CdGrp";
-import * as _ from "lodash";
-import CdGrpNotFoundException from "../infrastructure/exception/CdGrpNotFoundException";
 import { CodeDetailError } from "common/constants/CodeDetailErrorEnum";
-import CdDtlNotFoundException from "../infrastructure/exception/CdDtlNotFoundException";
-import UserRetireveService from "modules/user/service/UserRetireveService";
+import { CodeGroupError } from "common/constants/CodeGroupErrorEnum";
+import * as _ from "lodash";
+import { Equal, In } from "typeorm";
+import { CdDtlRequest } from "../api/dto/CdDtlRequest";
+import { CdDtl } from "../entity/CdDtl";
+import { CdGrp } from "../entity/CdGrp";
+import { CdDtlDuplicateException } from "../infrastructure/exception/CdDtlDuplicateException";
+import { CdDtlNotFoundException } from "../infrastructure/exception/CdDtlNotFoundException";
+import { CdGrpNotFoundException } from "../infrastructure/exception/CdGrpNotFoundException";
 import { CdDtlService } from "./CdDtlService";
+import { CdGrpService } from "./CdGrpService";
 
 /**
  * 코드상세 변경 서비스
  */
 @Injectable()
-export default class CdDtlChangeService {
+export class CdDtlChangeService {
     constructor(
         public cdGrpService: CdGrpService,
         public cdDtlService: CdDtlService,
@@ -32,11 +31,11 @@ export default class CdDtlChangeService {
         const cdGrp: CdGrp = await this.cdGrpService.get({ cdGrpId: Equal(cdGrpId) });
 
         if (_.isUndefined(cdGrp)) {
-            throw new CdGrpNotFoundException(CodeGroupError.CDGRP001, cdGrpId)
+            throw new CdGrpNotFoundException(CodeGroupError.CDGRP001, cdGrpId);
         }
 
         if (!_.isUndefined(cdGrp.getCdDtlByNm(req.cdDtlNm))) {
-            throw new CdDtlDuplicateException(CodeDetailError.CDDTL003, req.cdDtlNm)
+            throw new CdDtlDuplicateException(CodeDetailError.CDDTL003, req.cdDtlNm);
         }
 
         const cdCtlId = cdGrp.getNextCdDtlId();

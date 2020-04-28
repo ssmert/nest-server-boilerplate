@@ -1,9 +1,13 @@
 import { AbstractEntity } from "common/AbstractEntity";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import RoleResponse from "../api/dto/RoleResponse";
+import { RoleResponse } from "../api/dto/RoleResponse";
 
+/**
+ * 역할 엔티티
+ */
 @Entity({ name: "tb_role" })
 export class Role extends AbstractEntity<RoleResponse> {
+    dtoClass = RoleResponse;
     // 역할 일련번호
     @PrimaryGeneratedColumn({ name: "role_seq", type: "bigint" })
     roleSeq: number;
@@ -19,11 +23,6 @@ export class Role extends AbstractEntity<RoleResponse> {
     // 사용여부
     @Column("char", { name: "role_use_yn", length: 1 })
     roleUseYn: string;
-
-    ////////////////////////////////////////////////////////////////
-
-    dtoClass = RoleResponse;
-
 
     /**
      * 생성자

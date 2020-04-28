@@ -1,5 +1,5 @@
-import * as bcrypt from 'bcrypt';
-import * as _ from 'lodash';
+import * as bcrypt from "bcrypt";
+import * as _ from "lodash";
 
 export class UtilsProvider {
     /**
@@ -47,7 +47,7 @@ export class UtilsProvider {
     static generateRandomString(length: number) {
         return Math.random()
             .toString(36)
-            .replace(/[^a-zA-Z0-9]+/g, '')
+            .replace(/[^a-zA-Z0-9]+/g, "")
             .substr(0, length);
     }
     /**
@@ -57,6 +57,6 @@ export class UtilsProvider {
      * @returns {Promise<boolean>}
      */
     static validateHash(password: string, hash: string): Promise<boolean> {
-        return bcrypt.compare(password, hash || '');
+        return bcrypt.compare(password, hash || "");
     }
 }

@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common";
+import { RoleError } from "common/constants/RoleErrorEnum";
 import * as _ from "lodash";
 import { Equal, In } from "typeorm";
-import RoleResponse from "../api/dto/RoleResponse";
+import { RoleResponse } from "../api/dto/RoleResponse";
 import { Role } from "../entity/Role";
-import RoleNotFoundException from "../infrastructure/exception/RoleNotFoundException";
+import { RoleNotFoundException } from "../infrastructure/exception/RoleNotFoundException";
 import { RoleService } from "./RoleService";
-import { RoleError } from "common/constants/RoleErrorEnum";
 
 /**
  * 역할 조회 서비스
  */
 @Injectable()
-export default class RoleRetireveService {
+export class RoleRetireveService {
     constructor(private readonly roleService: RoleService) { }
     /**
      * 전체 역할 목록을 조회한다.

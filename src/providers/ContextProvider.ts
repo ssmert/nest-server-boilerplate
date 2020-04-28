@@ -1,7 +1,7 @@
-import * as requestContext from 'request-context';
+import * as requestContext from "request-context";
 
 export class ContextProvider {
-    private static readonly nameSpace = 'request';
+    private static readonly nameSpace = "request";
 
     static get<T>(key: string): T {
         return requestContext.get(ContextProvider._getKeyWithNamespace(key));

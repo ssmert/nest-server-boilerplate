@@ -1,5 +1,8 @@
-import { AbstractEntity } from '../AbstractEntity';
+import { AbstractEntity } from "common/AbstractEntity";
 
+/**
+ * 최상위 응답 DTO이다.
+ */
 export class AbstractDto {
     // 등록자
     regId: string;
@@ -16,6 +19,7 @@ export class AbstractDto {
 
     /**
      * 생성자
+     * 
      * @param entity entity 추상엔티티
      */
     constructor(entity: AbstractEntity) {

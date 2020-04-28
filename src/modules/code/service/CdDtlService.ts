@@ -1,18 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import * as _ from 'lodash';
-import { Equal, FindConditions } from 'typeorm';
-import { CdDtl } from '../entity/CdDtl';
-import { CdDtlRepository } from '../repository/CdDtlRepository';
+import { Injectable } from "@nestjs/common";
+import { FindConditions } from "typeorm";
+import { CdDtl } from "../entity/CdDtl";
+import { CdDtlRepository } from "../repository/CdDtlRepository";
 
+/**
+ * 코드상세 서비스
+ */
 @Injectable()
 export class CdDtlService {
-    /**
-     * 생성자이다.
-     * 
-     * @param cdDtlRepository 코드상세 레파지토리
-     */
     constructor(
-        private readonly cdDtlRepository: CdDtlRepository) { }
+        private readonly cdDtlRepository: CdDtlRepository
+    ) { }
 
     /**
      * 코드상세를 삭제한다.
@@ -24,7 +22,7 @@ export class CdDtlService {
     }
 
     /**
-     * 코드상세 엔티티 트렌젝션을 save한다.
+     * 코드상세 저장한다.
      * 
      * @param cdDtl 코드상세
      */

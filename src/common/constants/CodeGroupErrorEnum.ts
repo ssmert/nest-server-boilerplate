@@ -13,5 +13,5 @@ export enum CodeGroupErrorEnum {
  */
 export const CodeGroupError: Readonly<{ [key in CodeGroupErrorEnum]: IError }> = {
     [CodeGroupErrorEnum.CDGRP001]: { code: "CDGRP001", message: "[{0}]은(는) 존재하지 않는 코드그룹입니다." },
-    [CodeGroupErrorEnum.CDGRP002]: { code: "CDGRP002", message: "[{0}]와(과) 동일한 아이디가 존재합니다." },
+    [CodeGroupErrorEnum.CDGRP002]: { code: "CDGRP002", message: "[{0}]와(과) 동일한 코드그룹이 존재합니다." },
 };

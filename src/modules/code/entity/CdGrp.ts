@@ -1,11 +1,15 @@
 import { AbstractEntity } from "common/AbstractEntity";
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import CdGrpResponse from "../api/dto/CdGrpResponse";
 import { CdDtl } from "./CdDtl";
 import * as _ from "lodash";
+import { CdGrpResponse } from "../api/dto/CdGrpResponse";
 
-@Entity({ name: "tb_code_group" })
+/**
+ * 코드그룹 엔티티
+ */
+@Entity({ name: "tb_cd_grp" })
 export class CdGrp extends AbstractEntity<CdGrpResponse> {
+    dtoClass = CdGrpResponse;
     // 코드그룹 일련번호
     @PrimaryGeneratedColumn({ name: "cd_grp_seq", type: "bigint" })
     cdGrpSeq: number;
@@ -22,11 +26,6 @@ export class CdGrp extends AbstractEntity<CdGrpResponse> {
     @OneToMany(() => CdDtl, cdDtl => cdDtl.cdGrp, { eager: true, cascade: true })
     cdDtls: CdDtl[];
 
-    ////////////////////////////////////////////////////////////////
-
-    dtoClass = CdGrpResponse;
-
-
     /**
      * 생성자
      * 
@@ -42,7 +41,7 @@ export class CdGrp extends AbstractEntity<CdGrpResponse> {
     }
 
     /**
-     * 코드를 변경한다.
+     * 코드그룹을변경한다.
      * 
      * @param cdGrpId 코드 아이디
      * @param cdGrpNm 코드명 
@@ -67,7 +66,7 @@ export class CdGrp extends AbstractEntity<CdGrpResponse> {
     /**
      * 특정 코드상세를 반환한다.
      * 
-     * @param cdDtlId 코드상세 식별자
+     * @param cdDtlNm 코드상세명
      */
     getCdDtlByNm = (cdDtlNm: string): CdDtl => {
         return _.find(this.cdDtls, cdDtl => cdDtl.cdDtlNm === cdDtlNm);

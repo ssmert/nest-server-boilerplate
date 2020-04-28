@@ -1,6 +1,6 @@
-import * as _ from 'lodash';
-import { AbstractEntity } from './common/AbstractEntity';
-import { AbstractDto } from './common/dto/AbstractDto';
+import * as _ from "lodash";
+import { AbstractEntity } from "./common/AbstractEntity";
+import { AbstractDto } from "./common/dto/AbstractDto";
 
 declare global {
     interface Array<T> {

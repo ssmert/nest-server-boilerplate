@@ -1,9 +1,12 @@
-import { Injectable, Module } from '@nestjs/common';
-import * as _ from 'lodash';
-import { Equal, FindConditions } from 'typeorm';
-import { User } from '../entity/User';
-import { UserRepository } from '../repository/UserRepository';
+import { Injectable, Module } from "@nestjs/common";
+import * as _ from "lodash";
+import { Equal, FindConditions } from "typeorm";
+import { User } from "../entity/User";
+import { UserRepository } from "../repository/UserRepository";
 
+/**
+ * 사용자 서비스
+ */
 @Injectable()
 export class UserService {
     /**
@@ -39,8 +42,8 @@ export class UserService {
      * @param user 사용자
      */
     async create(user: User): Promise<User> {
-        const newUser = this.userRepository.create(user);
-        return this.userRepository.save(newUser);
+        const cUser = this.userRepository.create(user);
+        return this.userRepository.save(cUser);
     }
 
     /**

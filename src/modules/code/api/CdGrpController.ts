@@ -6,27 +6,20 @@ import { Response } from "express";
 import { JwtAuthGuard } from "guards/JwtAuthGuard";
 import { RolesGuard } from "guards/RolesGuard";
 import { AuthUserInterceptor } from "interceptors/AuthUserInterceptor";
-import CdGrpChangeService from "../service/CdGrpChangeService";
-import CdGrpRetireveService from "../service/CdGrpRetireveService";
-import CdGrpRequest from "./dto/CdGrpRequest";
-import CdGrpResponse from "./dto/CdGrpResponse";
+import { CdGrpRetireveService } from "../service/CdGrpRetireveService";
+import { CdGrpChangeService } from "../service/CdGrpChangeService";
+import { CdGrpResponse } from "./dto/CdGrpResponse";
+import { CdGrpRequest } from "./dto/CdGrpRequest";
 
 /**
  * 코드 컨트롤러이다.
  */
 @ApiBearerAuth()
-// @UseGuards(JwtAuthGuard, RolesGuard)
-// @UseInterceptors(AuthUserInterceptor)
-@ApiTags('cdGrps')
-@Controller('cdGrps')
-export default class CdGrpController {
-
-    /**
-     * 생성자
-     * 
-     * @param cdGrpRetireveService 코드 조회 서비스
-     * @param cdGrpChangeService 코드 변경 서비스
-     */
+@UseGuards(JwtAuthGuard, RolesGuard)
+@UseInterceptors(AuthUserInterceptor)
+@ApiTags("cdGrps")
+@Controller("cdGrps")
+export class CdGrpController {
     constructor(
         private cdGrpRetireveService: CdGrpRetireveService,
         private cdGrpChangeService: CdGrpChangeService) { }
@@ -40,7 +33,7 @@ export default class CdGrpController {
      */
     @Get()
     @ApiResponse({ status: HttpStatus.OK, type: CdGrpResponse })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
     public async getList(@Res() res: Response) {
         const cdGrpResponses: CdGrpResponse[] = await this.cdGrpRetireveService.getList();
 
@@ -53,10 +46,10 @@ export default class CdGrpController {
      * @param cdGrpId 코드식별자
      * @param res 응답 데이터
      */
-    @Get(':cdGrpId')
+    @Get(":cdGrpId")
     @ApiResponse({ status: HttpStatus.OK, type: CdGrpResponse })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async get(@Param('cdGrpId') cdGrpId: string, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async get(@Param("cdGrpId") cdGrpId: string, @Res() res: Response) {
         const cdGrpResponse: CdGrpResponse = await this.cdGrpRetireveService.get(cdGrpId);
 
         res.status(HttpStatus.OK).send({ data: { cdGrpResponse } });
@@ -70,7 +63,7 @@ export default class CdGrpController {
      */
     @Post()
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
     public async create(@Body() cdGrpRequest: CdGrpRequest, @Res() res: Response) {
         await this.cdGrpChangeService.createCdGrp(cdGrpRequest);
 
@@ -84,10 +77,10 @@ export default class CdGrpController {
      * @param cdGrpRequest 요청 데이터
      * @param res 응답 데이터
      */
-    @Put(':cdGrpId')
+    @Put(":cdGrpId")
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async update(@Param('cdGrpId') cdGrpId: string, @Body() cdGrpRequest: CdGrpRequest, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async update(@Param("cdGrpId") cdGrpId: string, @Body() cdGrpRequest: CdGrpRequest, @Res() res: Response) {
         await this.cdGrpChangeService.updateCdGrp(cdGrpId, cdGrpRequest);
 
         res.status(HttpStatus.CREATED).send();
@@ -99,10 +92,10 @@ export default class CdGrpController {
      * @param cdGrpId 코드식별자
      * @param res 응답 데이터
      */
-    @Delete(':cdGrpId')
+    @Delete(":cdGrpId")
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async delete(@Param('cdGrpId') cdGrpId: string, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async delete(@Param("cdGrpId") cdGrpId: string, @Res() res: Response) {
         await this.cdGrpChangeService.deleteCdGrp(cdGrpId);
 
         res.status(HttpStatus.CREATED).send();

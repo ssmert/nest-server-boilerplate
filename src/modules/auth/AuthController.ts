@@ -1,14 +1,14 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
-import { AuthService } from './AuthService';
-import { AuthRequest } from './dto/AuthRequest';
-import { AuthResponse } from './dto/AuthResponse';
+import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
+import { ApiTags, ApiResponse } from "@nestjs/swagger";
+import { AuthService } from "./AuthService";
+import { AuthRequest } from "./dto/AuthRequest";
+import { AuthResponse } from "./dto/AuthResponse";
 
 /**
  * 인증 컨트롤러이다.
  */
-@Controller('auth')
-@ApiTags('auth')
+@Controller("auth")
+@ApiTags("auth")
 export class AuthController {
     constructor(
         public readonly authService: AuthService

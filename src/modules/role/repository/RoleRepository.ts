@@ -6,5 +6,4 @@ import { Role } from "../entity/Role";
  */
 @EntityRepository(Role)
 export class RoleRepository extends Repository<Role> {
-
 }

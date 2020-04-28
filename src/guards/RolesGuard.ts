@@ -1,16 +1,16 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { AuthError } from 'common/constants/AuthErrorEnum';
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { AuthError } from "common/constants/AuthErrorEnum";
 import * as _ from "lodash";
-import AuthException from 'modules/auth/infrastructure/exception/AuthException';
-import { User } from 'modules/user/entity/User';
+import { User } from "modules/user/entity/User";
+import { AuthException } from "modules/auth/infrastructure/exception/AuthException";
 
 @Injectable()
 export class RolesGuard implements CanActivate {
     constructor(private readonly reflector: Reflector) { }
 
     canActivate(context: ExecutionContext): boolean {
-        const roles = this.reflector.get<string[]>('roles', context.getHandler());
+        const roles = this.reflector.get<string[]>("roles", context.getHandler());
 
         // 역할이 필요하지 않은 거래일 경우
         if (!roles) {

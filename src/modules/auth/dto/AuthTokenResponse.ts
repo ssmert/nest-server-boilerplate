@@ -1,5 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * 인증 토큰 응답데이터
+ */
 export class AuthTokenResponse {
     expiresIn: number;
     accessToken: string;

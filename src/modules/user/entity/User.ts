@@ -1,12 +1,15 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-// import { Role } from "../../role/entity/Role";
 import { AbstractEntity } from "common/AbstractEntity";
-import { UserResponse } from "../api/dto/UserResponse";
-import { PasswordTransformer } from "modules/user/PasswordTransformer";
 import { Role } from "modules/role/entity/Role";
+import { PasswordTransformer } from "modules/user/passwordTransformer";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { UserResponse } from "../api/dto/UserResponse";
 
+/**
+ * 사용자 엔티티
+ */
 @Entity({ name: "tb_user" })
 export class User extends AbstractEntity<UserResponse> {
+    dtoClass = UserResponse;
     // 사용자 일련번호
     @PrimaryGeneratedColumn({ name: "user_seq", type: "bigint" })
     userSeq: number;
@@ -35,11 +38,6 @@ export class User extends AbstractEntity<UserResponse> {
     @ManyToMany(() => Role, { cascade: true, eager: true })
     @JoinTable({ name: "tb_user_role", joinColumn: { name: "user_seq" }, inverseJoinColumn: { name: "role_seq" } })
     roles: Role[];
-
-    ////////////////////////////////////////////////////////////////
-
-    dtoClass = UserResponse;
-
 
     /**
      * 생성자

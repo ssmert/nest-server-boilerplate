@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export default class CdDtlRequest {
+/**
+ * 코드상세 요청데이터
+ */
+export class CdDtlRequest {
     // 코드상세명
     @ApiProperty()
     cdDtlNm: string;

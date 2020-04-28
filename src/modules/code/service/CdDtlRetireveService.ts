@@ -1,20 +1,21 @@
 import { Injectable } from "@nestjs/common";
-import * as _ from "lodash";
-import { Equal, In } from "typeorm";
-import CdDtlResponse from "../api/dto/CdDtlResponse";
-import { CdDtl } from "../entity/CdDtl";
-import CdDtlNotFoundException from "../infrastructure/exception/CdDtlNotFoundException";
 import { CodeGroupError } from "common/constants/CodeGroupErrorEnum";
-import { CdGrpService } from "./CdGrpService";
+import * as _ from "lodash";
+import { Equal } from "typeorm";
+import { CdDtlResponse } from "../api/dto/CdDtlResponse";
 import { CdGrp } from "../entity/CdGrp";
-import CdGrpNotFoundException from "../infrastructure/exception/CdGrpNotFoundException";
+import { CdDtlNotFoundException } from "../infrastructure/exception/CdDtlNotFoundException";
+import { CdGrpNotFoundException } from "../infrastructure/exception/CdGrpNotFoundException";
+import { CdGrpService } from "./CdGrpService";
 
 /**
  * 코드상세 조회 서비스
  */
 @Injectable()
-export default class CdDtlRetireveService {
-    constructor(private readonly cdGrpService: CdGrpService) { }
+export class CdDtlRetireveService {
+    constructor(
+        private readonly cdGrpService: CdGrpService
+    ) { }
     /**
      * 전체 코드상세 목록을 조회한다.
      * 

@@ -1,16 +1,16 @@
 import { Injectable } from "@nestjs/common";
 import { RoleError } from "common/constants/RoleErrorEnum";
 import { Equal } from "typeorm";
-import RoleRequest from "../api/dto/RoleRequest";
+import { RoleRequest } from "../api/dto/RoleRequest";
 import { Role } from "../entity/Role";
-import RoleDuplicateException from "../infrastructure/exception/RoleDuplicateException";
+import { RoleDuplicateException } from "../infrastructure/exception/RoleDuplicateException";
 import { RoleService } from "./RoleService";
 
 /**
  * 역할 변경 서비스
  */
 @Injectable()
-export default class RoleChangeService {
+export class RoleChangeService {
     constructor(
         public roleService: RoleService,
     ) { }

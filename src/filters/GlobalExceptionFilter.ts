@@ -1,8 +1,8 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { Response } from 'express';
-import { IError } from 'interfaces/IError';
-import * as _ from 'lodash';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { Response } from "express";
+import { IError } from "interfaces/IError";
+import * as _ from "lodash";
 
 /**
  * 글로벌 에러 필터이다.
@@ -33,7 +33,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
                 // 오류 메시지 인자를 치환한다.
                 _.each(iError.msgArgs, (arg, idx) => {
-                    message = iError.message.replace(new RegExp("\\{" + idx + "\\}", 'g'), arg);
+                    message = iError.message.replace(new RegExp("\\{" + idx + "\\}", "g"), arg.toString());
                 });
             }
         }

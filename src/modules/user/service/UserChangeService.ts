@@ -4,16 +4,16 @@ import * as _ from "lodash";
 import { Role } from "modules/role/entity/Role";
 import { RoleService } from "modules/role/service/RoleService";
 import { Equal, In } from "typeorm";
-import UserRequest from "../api/dto/UserRequest";
+import { UserRequest } from "../api/dto/UserRequest";
 import { User } from "../entity/User";
-import UserDuplicateException from "../infrastructure/exception/UserDuplicateException";
+import { UserDuplicateException } from "../infrastructure/exception/UserDuplicateException";
 import { UserService } from "./UserService";
 
 /**
  * 사용자 변경 서비스
  */
 @Injectable()
-export default class UserChangeService {
+export class UserChangeService {
     constructor(
         public userService: UserService,
         public roleService: RoleService,

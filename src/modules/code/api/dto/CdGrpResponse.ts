@@ -1,14 +1,16 @@
 import { AbstractDto } from "common/dto/AbstractDto";
 import { CdGrp } from "modules/code/entity/CdGrp";
-import { CdDtl } from "modules/code/entity/CdDtl";
-import CdDtlResponse from "./CdDtlResponse";
+import { CdDtlResponse } from "./CdDtlResponse";
 
-export default class CdGrpResponse extends AbstractDto {
-    // 코드 아이디
+/**
+ * 코드그룹 응답데이터
+ */
+export class CdGrpResponse extends AbstractDto {
+    // 코드그룹 식별자
     cdGrpId: string;
-    // 코드명
+    // 코드그룹명
     cdGrpNm: string;
-    // 사용여부
+    // 코드상세 목록
     cdDtls: CdDtlResponse[];
 
     /**
@@ -17,7 +19,7 @@ export default class CdGrpResponse extends AbstractDto {
      * @param cdGrp 코드그룹
      */
     constructor(cdGrp: CdGrp) {
-        super(cdGrp)
+        super(cdGrp);
         this.cdGrpId = cdGrp.cdGrpId;
         this.cdGrpNm = cdGrp.cdGrpNm;
         this.cdDtls = cdGrp.cdDtls.toDtos();

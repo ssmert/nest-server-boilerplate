@@ -6,28 +6,20 @@ import { Response } from "express";
 import { JwtAuthGuard } from "guards/JwtAuthGuard";
 import { RolesGuard } from "guards/RolesGuard";
 import { AuthUserInterceptor } from "interceptors/AuthUserInterceptor";
-import CdDtlChangeService from "../service/CdDtlChangeService";
-import CdDtlRetireveService from "../service/CdDtlRetireveService";
-import CdDtlRequest from "./dto/CdDtlRequest";
-import CdDtlResponse from "./dto/CdDtlResponse";
+import { CdDtlRetireveService } from "../service/CdDtlRetireveService";
+import { CdDtlChangeService } from "../service/CdDtlChangeService";
+import { CdDtlResponse } from "./dto/CdDtlResponse";
+import { CdDtlRequest } from "./dto/CdDtlRequest";
 
 /**
  * 코드상세 컨트롤러이다.
  */
-
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(AuthUserInterceptor)
-@ApiTags('cdDtls')
-@Controller('cdGrps/:cdGrpId/cdDtls')
-export default class CdDtlController {
-
-    /**
-     * 생성자
-     * 
-     * @param cdDtlRetireveService 코드상세 조회 서비스
-     * @param cdDtlChangeService 코드상세 변경 서비스
-     */
+@ApiTags("cdDtls")
+@Controller("cdGrps/:cdGrpId/cdDtls")
+export class CdDtlController {
     constructor(
         private cdDtlRetireveService: CdDtlRetireveService,
         private cdDtlChangeService: CdDtlChangeService) { }
@@ -41,8 +33,8 @@ export default class CdDtlController {
      */
     @Get()
     @ApiResponse({ status: HttpStatus.OK, type: CdDtlResponse })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async getList(@Param('cdGrpId') cdGrpId: string, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async getList(@Param("cdGrpId") cdGrpId: string, @Res() res: Response) {
         const cdDtlResponses: CdDtlResponse[] = await this.cdDtlRetireveService.getList(cdGrpId);
 
         res.status(HttpStatus.OK).send({ data: { cdDtlResponses } });
@@ -54,10 +46,10 @@ export default class CdDtlController {
      * @param cdDtlId 코드상세식별자
      * @param res 응답 데이터
      */
-    @Get(':cdDtlId')
+    @Get(":cdDtlId")
     @ApiResponse({ status: HttpStatus.OK, type: CdDtlResponse })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async get(@Param('cdGrpId') cdGrpId: string, @Param('cdDtlId') cdDtlId: string, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async get(@Param("cdGrpId") cdGrpId: string, @Param("cdDtlId") cdDtlId: string, @Res() res: Response) {
         const cdDtlResponse: CdDtlResponse = await this.cdDtlRetireveService.get(cdGrpId, cdDtlId);
 
         res.status(HttpStatus.OK).send({ data: { cdDtlResponse } });
@@ -71,8 +63,8 @@ export default class CdDtlController {
      */
     @Post()
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async create(@Param('cdGrpId') cdGrpId: string, @Body() cdDtlRequest: CdDtlRequest, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async create(@Param("cdGrpId") cdGrpId: string, @Body() cdDtlRequest: CdDtlRequest, @Res() res: Response) {
         await this.cdDtlChangeService.createCdDtl(cdGrpId, cdDtlRequest);
 
         res.status(HttpStatus.CREATED).send();
@@ -85,10 +77,10 @@ export default class CdDtlController {
      * @param cdDtlRequest 요청 데이터
      * @param res 응답 데이터
      */
-    @Put(':cdDtlId')
+    @Put(":cdDtlId")
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async update(@Param('cdGrpId') cdGrpId: string, @Param('cdDtlId') cdDtlId: string, @Body() cdDtlRequest: CdDtlRequest, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async update(@Param("cdGrpId") cdGrpId: string, @Param("cdDtlId") cdDtlId: string, @Body() cdDtlRequest: CdDtlRequest, @Res() res: Response) {
         await this.cdDtlChangeService.updateCdDtl(cdGrpId, cdDtlId, cdDtlRequest);
 
         res.status(HttpStatus.CREATED).send();
@@ -100,10 +92,10 @@ export default class CdDtlController {
      * @param cdDtlId 코드상세식별자
      * @param res 응답 데이터
      */
-    @Delete(':cdDtlId')
+    @Delete(":cdDtlId")
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Roles(AuthRole.ROLE_SPR, AuthRole.ROLE_MNG, AuthRole.ROLE_USR)
-    public async delete(@Param('cdGrpId') cdGrpId: string, @Param('cdDtlId') cdDtlId: string, @Res() res: Response) {
+    @Roles(AuthRole.ROLE_SUPER, AuthRole.ROLE_MANAGER, AuthRole.ROLE_USER)
+    public async delete(@Param("cdGrpId") cdGrpId: string, @Param("cdDtlId") cdDtlId: string, @Res() res: Response) {
         await this.cdDtlChangeService.deleteCdDtl(cdGrpId, cdDtlId);
 
         res.status(HttpStatus.CREATED).send();

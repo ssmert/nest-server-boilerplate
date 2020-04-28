@@ -1,28 +1,36 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthError } from 'common/constants/AuthErrorEnum';
-import * as _ from 'lodash';
-import { User } from 'modules/user/entity/User';
-import { ContextProvider } from '../../providers/ContextProvider';
-import { UtilsProvider } from '../../providers/UtilsService';
-import { ConfigService } from '../../shared/services/ConfigService';
-import { UserService } from '../user/service/UserService';
-import { AuthRequest } from './dto/AuthRequest';
-import { AuthResponse } from './dto/AuthResponse';
-import { AuthTokenResponse } from './dto/AuthTokenResponse';
-import AuthException from './infrastructure/exception/AuthException';
+import { Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { AuthError } from "common/constants/AuthErrorEnum";
+import * as _ from "lodash";
+import { User } from "modules/user/entity/User";
+import { ContextProvider } from "../../providers/ContextProvider";
+import { UtilsProvider } from "../../providers/UtilsProvider";
+import { ConfigService } from "../../shared/services/ConfigService";
+import { UserService } from "../user/service/UserService";
+import { AuthRequest } from "./dto/AuthRequest";
+import { AuthResponse } from "./dto/AuthResponse";
+import { AuthTokenResponse } from "./dto/AuthTokenResponse";
+import { AuthException } from "./infrastructure/exception/AuthException";
 
-
+/**
+ * 인증 서비스
+ */
 @Injectable()
 export class AuthService {
     constructor(
         public readonly jwtService: JwtService,
         public readonly configService: ConfigService,
         public readonly userService: UserService,
+
     ) { }
 
+    /**
+     * 컨텍스트에 사용자 정보를 담는다.
+     * 
+     * @param user 사용자
+     */
     static setAuthUser(user: User) {
-        ContextProvider.set('auth', user);
+        ContextProvider.set("auth", user);
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -53,7 +61,7 @@ export class AuthService {
                 userNm: authUser.userNm,
                 expiresIn: this.configService.getNumber("JWT_EXPIRATION_TIME")
             },
-                { expiresIn: '1d' }),
+                { expiresIn: "1d" }),
         });
 
         return new AuthResponse(authUser.toDto(), token);

@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from "class-validator";
 
 /**
  * 유효한 비밀번호인지 체크한다.
@@ -10,7 +10,7 @@ export function IsPassword(
     return (object: any, propertyName: string) => {
         registerDecorator({
             propertyName,
-            name: 'isPassword',
+            name: "isPassword",
             target: object.constructor,
             constraints: [],
             options: validationOptions,

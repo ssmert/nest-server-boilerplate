@@ -1,9 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import * as _ from 'lodash';
-import { Equal, FindConditions } from 'typeorm';
-import { Role } from '../entity/Role';
-import { RoleRepository } from '../repository/RoleRepository';
+import { Injectable } from "@nestjs/common";
+import * as _ from "lodash";
+import { Equal, FindConditions } from "typeorm";
+import { Role } from "../entity/Role";
+import { RoleRepository } from "../repository/RoleRepository";
 
+/**
+ * 역할 서비스
+ */
 @Injectable()
 export class RoleService {
     /**
