@@ -9,7 +9,7 @@
         "format": "prettier --write \"src/**/*.ts\"",
         "start:dev": "ts-node -r tsconfig-paths/register src/main.ts",
         "watch:dev": "nodemon --config nodemon.json",
-        "debug:dev": "nodemon --config nodemon-debug.json",
+        "start:debug": "nest start --debug --watch",
         "webpack": "webpack --config webpack.config.js --progress",
         "start:prod": "node dist/main.js",
         "lint": "eslint . --ext .ts",
