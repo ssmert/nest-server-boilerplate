@@ -24,7 +24,7 @@ export default class RoleRetireveService {
     }
 
     /**
-     * 특정 역할를 조회한다.
+     * 특정 역할을 조회한다.
      * 
      * @param roleId 역할식별자
      */

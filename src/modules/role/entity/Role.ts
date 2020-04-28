@@ -40,7 +40,7 @@ export class Role extends AbstractEntity<RoleResponse> {
     }
 
     /**
-     * 역할를 변경한다.
+     * 역할을 변경한다.
      * 
      * @param roleId 역할 아이디
      * @param roleNm 역할명 

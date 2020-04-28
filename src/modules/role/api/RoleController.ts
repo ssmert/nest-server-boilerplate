@@ -48,7 +48,7 @@ export default class RoleController {
     }
 
     /**
-     * 특정 역할를 조회한다.
+     * 특정 역할을 조회한다.
      * 
      * @param roleId 역할식별자
      * @param res 응답 데이터
@@ -63,7 +63,7 @@ export default class RoleController {
     }
 
     /**
-     * 신규 역할를 등록한다.
+     * 신규 역할을 등록한다.
      * 
      * @param roleRequest 요청 데이터
      * @param res 응답 데이터
@@ -78,7 +78,7 @@ export default class RoleController {
     }
 
     /**
-     * 특정 역할를 변경한다.
+     * 특정 역할을 변경한다.
      * 
      * @param roleId 역할식별자
      * @param roleRequest 요청 데이터
@@ -94,7 +94,7 @@ export default class RoleController {
     }
 
     /**
-     * 특정 역할를 삭제한다.
+     * 특정 역할을 삭제한다.
      * 
      * @param roleId 역할식별자
      * @param res 응답 데이터

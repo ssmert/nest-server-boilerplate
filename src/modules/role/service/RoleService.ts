@@ -31,7 +31,7 @@ export class RoleService {
     }
 
     /**
-     * 역할를 등록한다.
+     * 역할을 등록한다.
      * 
      * @param role 역할
      */
@@ -41,7 +41,7 @@ export class RoleService {
     }
 
     /**
-     * 역할를 삭제한다.
+     * 역할을 삭제한다.
      * 
      * @param role 역할
      */
@@ -59,7 +59,7 @@ export class RoleService {
     }
 
     /**
-     * 역할가 존재하는지 확인한다.
+     * 역할이 존재하는지 확인한다.
      * 
      * @param roleId 역할식별자
      */

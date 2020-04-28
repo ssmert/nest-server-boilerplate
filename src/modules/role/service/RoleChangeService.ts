@@ -16,12 +16,12 @@ export default class RoleChangeService {
     ) { }
 
     /**
-     * 신규 역할를 등록한다.
+     * 신규 역할을 등록한다.
      * 
      * @param req 요청객체
      */
     async createRole(req: RoleRequest): Promise<void> {
-        // 동일한 역할가 존재한다면...
+        // 동일한 역할이 존재한다면...
         if ((await this.roleService.isDup(req.roleId))) {
             throw new RoleDuplicateException(RoleError.ROLE002, req.roleId);
         }
@@ -32,13 +32,13 @@ export default class RoleChangeService {
     }
 
     /**
-     * 특정 역할를 수정한다.
+     * 특정 역할을 수정한다.
      * 
      * @param roleId 역할식별자
      * @param req 요청객체
      */
     async updateRole(roleId: string, req: RoleRequest): Promise<void> {
-        // 동일한 역할가 존재한다면...
+        // 동일한 역할이 존재한다면...
         if (roleId !== req.roleId && (await this.roleService.isDup(req.roleId))) {
             throw new RoleDuplicateException(RoleError.ROLE002, req.roleId);
         }
@@ -51,7 +51,7 @@ export default class RoleChangeService {
     }
 
     /**
-     * 특정 역할를 삭제한다.
+     * 특정 역할을 삭제한다.
      * 
      * @param role 역할
      */
