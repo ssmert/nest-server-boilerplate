@@ -39,8 +39,8 @@ export class UserService {
      * @param user 사용자
      */
     async create(user: User): Promise<User> {
-        let x = this.userRepository.create(user);
-        return this.userRepository.save(x);
+        const newUser = this.userRepository.create(user);
+        return this.userRepository.save(newUser);
     }
 
     /**

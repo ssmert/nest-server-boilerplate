@@ -36,8 +36,8 @@ export class RoleService {
      * @param role 역할
      */
     async create(role: Role): Promise<Role> {
-        let x = this.roleRepository.create(role);
-        return this.roleRepository.save(x);
+        const newRole = this.roleRepository.create(role);
+        return this.roleRepository.save(newRole);
     }
 
     /**
