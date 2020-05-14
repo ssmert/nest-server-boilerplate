@@ -28,7 +28,8 @@ export class CdDtl extends AbstractEntity<CdDtlResponse> {
 
     // 코드그룹
     @ManyToOne(() => CdGrp, cdGrp => cdGrp.cdDtls, {
-        onDelete: "RESTRICT"
+        onDelete: "CASCADE",
+        primary: true
     })
     @JoinColumn({ name: "cd_grp_seq", referencedColumnName: "cdGrpSeq" })
     cdGrp: CdGrp;
