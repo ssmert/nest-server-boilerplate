@@ -1,5 +1,6 @@
 import { AbstractDto } from "common/dto/AbstractDto";
 import { Role } from "modules/role/entity/Role";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 역할 응답데이터
@@ -10,7 +11,7 @@ export class RoleResponse extends AbstractDto {
     // 역할명
     roleNm: string;
     // 사용여부
-    roleUseYn: string;
+    roleUseYn: YesOrNoEnum;
 
     /**
      * 생성자

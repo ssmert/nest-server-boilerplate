@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 사용자 요청데이터
@@ -18,7 +19,7 @@ export class UserRequest {
     userPhone: string;
     // 사용여부
     @ApiProperty()
-    userUseYn: string;
+    userUseYn: YesOrNoEnum;
     // 역할목록
     @ApiProperty()
     roleIds: string[];
@@ -33,7 +34,7 @@ export class UserRequest {
      * @param userUseYn 사용여부 
      * @param roleIds 역할식별자목록 
      */
-    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roleIds: string[]) {
+    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: YesOrNoEnum, roleIds: string[]) {
         this.userId = userId;
         this.userNm = userNm;
         this.userPwd = userPwd;

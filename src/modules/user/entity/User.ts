@@ -3,6 +3,7 @@ import { Role } from "modules/role/entity/Role";
 import { PasswordTransformer } from "modules/user/passwordTransformer";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserResponse } from "../api/dto/UserResponse";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 사용자 엔티티
@@ -31,8 +32,8 @@ export class User extends AbstractEntity<UserResponse> {
     userPhone: string;
 
     // 사용여부
-    @Column("char", { name: "user_use_yn", length: 1 })
-    userUseYn: string;
+    @Column({ name: "user_use_yn", type: "enum", enum: YesOrNoEnum })
+    userUseYn: YesOrNoEnum;
 
     // 역할목록
     @ManyToMany(() => Role, { cascade: true, eager: true })
@@ -49,7 +50,7 @@ export class User extends AbstractEntity<UserResponse> {
      * @param userUseYn 사용여부 
      * @param roles 역할목록 
      */
-    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roles: Role[]) {
+    constructor(userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: YesOrNoEnum, roles: Role[]) {
         super();
         this.userId = userId;
         this.userNm = userNm;
@@ -69,7 +70,7 @@ export class User extends AbstractEntity<UserResponse> {
      * @param userUseYn 사용여부 
      * @param roles 역할목록 
      */
-    modifyUser = (userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: string, roles: Role[]): void => {
+    modifyUser = (userId: string, userNm: string, userPwd: string, userPhone: string, userUseYn: YesOrNoEnum, roles: Role[]): void => {
         this.userId = userId;
         this.userNm = userNm;
         this.userPwd = userPwd;

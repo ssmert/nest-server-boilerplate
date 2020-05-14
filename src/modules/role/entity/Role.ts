@@ -1,6 +1,7 @@
 import { AbstractEntity } from "common/AbstractEntity";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { RoleResponse } from "../api/dto/RoleResponse";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 역할 엔티티
@@ -21,8 +22,8 @@ export class Role extends AbstractEntity<RoleResponse> {
     roleNm: string;
 
     // 사용여부
-    @Column("char", { name: "role_use_yn", length: 1 })
-    roleUseYn: string;
+    @Column({ name: "role_use_yn", type: "enum", enum: YesOrNoEnum })
+    roleUseYn: YesOrNoEnum;
 
     /**
      * 생성자
@@ -31,7 +32,7 @@ export class Role extends AbstractEntity<RoleResponse> {
      * @param roleNm 역할명 
      * @param roleUseYn 사용여부 
      */
-    constructor(roleId: string, roleNm: string, roleUseYn: string) {
+    constructor(roleId: string, roleNm: string, roleUseYn: YesOrNoEnum) {
         super();
         this.roleId = roleId;
         this.roleNm = roleNm;
@@ -45,7 +46,7 @@ export class Role extends AbstractEntity<RoleResponse> {
      * @param roleNm 역할명 
      * @param roleUseYn 사용여부 
      */
-    modifyRole = (roleId: string, roleNm: string, roleUseYn: string): void => {
+    modifyRole = (roleId: string, roleNm: string, roleUseYn: YesOrNoEnum): void => {
         this.roleId = roleId;
         this.roleNm = roleNm;
         this.roleUseYn = roleUseYn;

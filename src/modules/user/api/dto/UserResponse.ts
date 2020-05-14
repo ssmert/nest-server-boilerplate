@@ -1,6 +1,7 @@
 import { RoleResponse } from "modules/role/api/dto/RoleResponse";
 import { User } from "modules/user/entity/User";
 import { AbstractDto } from "../../../../common/dto/AbstractDto";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 사용자 응답 데이터
@@ -15,7 +16,7 @@ export class UserResponse extends AbstractDto {
     // 연락처
     userPhone: string;
     // 사용여부
-    userUseYn: string;
+    userUseYn: YesOrNoEnum;
     // 역할목록
     roles: RoleResponse[];
 

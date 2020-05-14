@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { YesOrNoEnum } from "common/constants/YesOrNoEnum";
 
 /**
  * 역할 요청데이터
@@ -12,7 +13,7 @@ export class RoleRequest {
     roleNm: string;
     // 사용여부
     @ApiProperty()
-    roleUseYn: string;
+    roleUseYn: YesOrNoEnum;
 
     /**
      * 생성자
@@ -21,7 +22,7 @@ export class RoleRequest {
      * @param roleNm 역할명 
      * @param roleUseYn 사용여부 
      */
-    constructor(roleId: string, roleNm: string, roleUseYn: string) {
+    constructor(roleId: string, roleNm: string, roleUseYn: YesOrNoEnum) {
         this.roleId = roleId;
         this.roleNm = roleNm;
         this.roleUseYn = roleUseYn;
