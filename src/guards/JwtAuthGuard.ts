@@ -1,6 +1,6 @@
 import { ExecutionContext, Injectable } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { AuthError } from "common/constants/AuthErrorEnum";
+import { AuthError } from "modules/auth/infrastructure/constants/AuthErrorEnum";
 import { TokenExpiredError } from "jsonwebtoken";
 import { AuthException } from "modules/auth/infrastructure/exception/AuthException";
 

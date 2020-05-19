@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { AuthError } from "common/constants/AuthErrorEnum";
+import { AuthError } from "modules/auth/infrastructure/constants/AuthErrorEnum";
 import * as _ from "lodash";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { Equal } from "typeorm";

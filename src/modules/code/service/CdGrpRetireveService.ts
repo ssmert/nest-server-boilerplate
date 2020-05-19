@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CodeGroupError } from "common/constants/CodeGroupErrorEnum";
+import { CodeGroupError } from "modules/code/infrastructure/constants/CodeGroupErrorEnum";
 import * as _ from "lodash";
 import { Equal, In } from "typeorm";
 import { CdGrpResponse } from "../api/dto/CdGrpResponse";

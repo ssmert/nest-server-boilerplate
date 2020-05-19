@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { RoleError } from "common/constants/RoleErrorEnum";
+import { RoleError } from "modules/role/infrastructure/constants/RoleErrorEnum";
 import * as _ from "lodash";
 import { Equal, In } from "typeorm";
 import { RoleResponse } from "../api/dto/RoleResponse";

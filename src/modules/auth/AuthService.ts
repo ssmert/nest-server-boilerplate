@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AuthError } from "common/constants/AuthErrorEnum";
+import { AuthError } from "modules/auth/infrastructure/constants/AuthErrorEnum";
 import * as _ from "lodash";
 import { User } from "modules/user/entity/User";
 import { ContextProvider } from "../../providers/ContextProvider";

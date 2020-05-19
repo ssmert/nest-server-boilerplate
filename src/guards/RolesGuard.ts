@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { AuthError } from "common/constants/AuthErrorEnum";
+import { AuthError } from "modules/auth/infrastructure/constants/AuthErrorEnum";
 import * as _ from "lodash";
 import { User } from "modules/user/entity/User";
 import { AuthException } from "modules/auth/infrastructure/exception/AuthException";

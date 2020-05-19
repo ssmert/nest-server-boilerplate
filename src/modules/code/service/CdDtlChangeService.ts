@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { CodeDetailError } from "common/constants/CodeDetailErrorEnum";
-import { CodeGroupError } from "common/constants/CodeGroupErrorEnum";
+import { CodeDetailError } from "modules/code/infrastructure/constants/CodeDetailErrorEnum";
+import { CodeGroupError } from "modules/code/infrastructure/constants/CodeGroupErrorEnum";
 import * as _ from "lodash";
 import { Equal, In } from "typeorm";
 import { CdDtlRequest } from "../api/dto/CdDtlRequest";
