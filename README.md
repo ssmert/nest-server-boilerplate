@@ -13,7 +13,7 @@ brew install node or 직접설치
 2. 의존성 설치
 
 ```
-yarn add .
+yarn add . or yarn
 ```
 
 3. 시작
@@ -31,12 +31,12 @@ yarn build
 
 # 기술스택
 
--   Nestjs : 7.0.7
--   Node : 12.7.12
--   express : 4.17.1
--   TypeScript : 3.8.3
--   rxjs : 6.5.5
--   외 package.json참고
+- Nestjs : 7.0.7
+- Node : 12.7.12
+- express : 4.17.1
+- TypeScript : 3.8.3
+- rxjs : 6.5.5
+- 외 package.json참고
 
 # 디렉토리 구조
 
@@ -79,12 +79,12 @@ nest-server-boilerplate/                      # root
 
 # swagger
 
--   http://localhost:8000/documentation/
+- http://localhost:8000/documentation/
 
 # 참고
 
--   [NEST](https://docs.nestjs.com/)
--   [typeorm](https://typeorm.io/#/)
+- [NEST](https://docs.nestjs.com/)
+- [typeorm](https://typeorm.io/#/)
 
 ---
 
@@ -94,9 +94,9 @@ nest-server-boilerplate/                      # root
 
 프로젝트의 개발 시 개발생산성 향상 및 운영의 효율화를 위해 반드시 준수되어야 하는 준수사항을 정의함
 
--   제시된 표준은 철저히 준수한다.
--   모든 화면은 최대 응답속도 5초 이내를 목표로 Design 되어야 한다.
--   본 표준안은 최소한의 필수사항을 지키도록 유도하고 해서는 안되는 것들을 지적하는 내용이며, 개개인의 다양한 능력과 개념들로 본 표준을 확장시켜 시스템에 적용시키도록 한다.
+- 제시된 표준은 철저히 준수한다.
+- 모든 화면은 최대 응답속도 5초 이내를 목표로 Design 되어야 한다.
+- 본 표준안은 최소한의 필수사항을 지키도록 유도하고 해서는 안되는 것들을 지적하는 내용이며, 개개인의 다양한 능력과 개념들로 본 표준을 확장시켜 시스템에 적용시키도록 한다.
 
 ## 2. 명명규칙 표준
 
@@ -108,11 +108,11 @@ nest-server-boilerplate/                      # root
 
 ## 4. 주석처리
 
--   각 Method 앞에 Method의 Parameter, Return Value의 의미와 Method의 간략한 설명을 기술한다.
--   해당 프로그램의 핵심적인 중요Logic에 대해서는 반드시 그에 따른 주석을 추가한다.
--   사용하지 않는 로직이라면 지우고 사용예정이라 주석처리를 했다면 반드시 TODO로 작성한다.
--   JsDoc을 이용하여 프로그램 사양서를 작성할 수 있도록 한다.
--   JsDoc의 표준을 준수한다.
+- 각 Method 앞에 Method의 Parameter, Return Value의 의미와 Method의 간략한 설명을 기술한다.
+- 해당 프로그램의 핵심적인 중요Logic에 대해서는 반드시 그에 따른 주석을 추가한다.
+- 사용하지 않는 로직이라면 지우고 사용예정이라 주석처리를 했다면 반드시 TODO로 작성한다.
+- JsDoc을 이용하여 프로그램 사양서를 작성할 수 있도록 한다.
+- JsDoc의 표준을 준수한다.
 
 예 )
 

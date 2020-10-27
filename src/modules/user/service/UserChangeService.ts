@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { UserError } from "common/constants/UserErrorEnum";
 import * as _ from "lodash";
 import { Role } from "modules/role/entity/Role";
 import { RoleService } from "modules/role/service/RoleService";
 import { Equal, In } from "typeorm";
 import { UserRequest } from "../api/dto/UserRequest";
 import { User } from "../entity/User";
+import { UserError } from "../infrastructure/constants/UserErrorEnum";
 import { UserDuplicateException } from "../infrastructure/exception/UserDuplicateException";
 import { UserService } from "./UserService";
 
